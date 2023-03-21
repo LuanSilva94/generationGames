@@ -32,7 +32,7 @@ public class Categoria {
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
 	private List<Produto> produto;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -72,7 +72,6 @@ public class Categoria {
 	public void setProduto(List<Produto> produto) {
 		this.produto = produto;
 	}
-	
 	
 
 }

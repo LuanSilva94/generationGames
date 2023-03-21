@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -48,7 +49,13 @@ public class CategoriaController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> put(@Valid @RequestBody Categoria categoria){
+    public ResponseEntity<Categoria> post(@Valid @RequestBody Categoria categoria){
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(categoriaRepository.save(categoria));
+    }
+	
+	@PutMapping
+	public ResponseEntity<Categoria> putt(@Valid @RequestBody Categoria categoria){
         return categoriaRepository.findById(categoria.getId())
             .map(resposta -> ResponseEntity.status(HttpStatus.CREATED)
             .body(categoriaRepository.save(categoria)))
